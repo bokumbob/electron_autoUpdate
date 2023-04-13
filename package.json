@@ -1,5 +1,5 @@
 {
-  "name": "electron",
+  "name": "electron_test",
   "version": "1.0.0",
   "description": "practice electron",
   "main": "main.js",
@@ -7,7 +7,12 @@
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "build": "run-script-os",
+    "build:win32": "electron-builder build --windows nsis:ia32",
+    "build:win64": "electron-builder build --windows nsis:x64",
+    "build:win": "npm run build:win32 && npm run build:win64"
   },
   "author": "jjs",
   "license": "ISC",
@@ -17,9 +22,64 @@
     "@electron-forge/maker-rpm": "^6.0.5",
     "@electron-forge/maker-squirrel": "^6.0.5",
     "@electron-forge/maker-zip": "^6.0.5",
-    "electron": "^23.1.0"
+    "@electron-forge/publisher-github": "^6.0.5",
+    "electron": "^24.1.0",
+    "electron-builder": "^23.6.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^5.3.0",
+    "electron-winstaller": "^5.1.0",
+    "run-script-os": "^1.1.6"
   },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bokumbob/electron_autoUpdate.git"
+  },
+  "build": {
+    "productName": "setup_test",
+    "appId": "com.electron_test.app",
+    "copyright": "copyright 2023 Project, Inc",
+    "publish": {
+      "provider": "github"
+    },
+    "asar": true,
+    "protocols": {
+      "name": "setup_test",
+      "schemes": [
+        "setup_test"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "arch": [
+        "x64",
+        "ia32"
+      ],
+      "icon": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "category": "public.app-category.productivity",
+      "icon": null
+    },
+    "dmg": {
+      "title": "setup_test",
+      "icon": null
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    },
+    "files": [
+      "!.vscode${/*}"
+    ]
   }
 }

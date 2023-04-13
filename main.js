@@ -1,30 +1,42 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('path');
+const { BrowserWindow, app, ipcMain } = require("electron")
+const { autoUpdater } = require("electron-updater")
+const path = require('path')
 
-const createWindow = () => {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-    },
-  });
-  ipcMain.handle('ping', () => 'pong')
-  win.loadFile('index.html');
-};
+let win 
+
+function createWindow () {
+    win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
+    })
+    win.loadFile('index.html')
+}
 
 app.whenReady().then(() => {
-  createWindow();
+    createWindow();
+    autoUpdater.checkForUpdatesAndNotify();
+})
 
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    }
-  });
-});
+ipcMain.on('app_version', e => {
+    e.sender.send('app_version', {version: app.getVersion()});
+})
+
+autoUpdater.on('update-available', () => {
+    win.webContents.send('update_available');
+})
+
+autoUpdater.on('update-downloaded', () => {
+    win.webContents.send('update_downloaded');
+})
+
+ipcMain.on('restart_app', () => {
+    autoUpdater.quitAndInstall();
+})
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
+    if(process.platform !== 'darwin') app.quit();
+})
+

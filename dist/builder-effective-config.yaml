@@ -1,0 +1,23 @@
+directories:
+  output: ./dist/
+  buildResources: ./resources/installer/
+  app: .
+productName: setup_test
+appId: com.electron
+asar: true
+protocols:
+  name: setup_test
+  schemes:
+    - setup_test
+win:
+  target:
+    - zip
+    - nsis
+  icon: ./resources/installer/Icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+files:
+  - filter:
+      - '!.vscode${/*}'
+electronVersion: 24.1.0
