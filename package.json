@@ -1,6 +1,6 @@
 {
   "name": "electron_test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "practice electron",
   "main": "main.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "build": "run-script-os",
     "build:win32": "electron-builder build --windows nsis:ia32",
     "build:win64": "electron-builder build --windows nsis:x64",
-    "build:win": "npm run build:win32 && npm run build:win64"
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "deploy": "electron-builder build --win --publish always"
   },
   "author": "jjs",
   "license": "ISC",
@@ -36,10 +37,11 @@
   },
   "build": {
     "productName": "setup_test",
-    "appId": "com.electron_test.app",
+    "appId": "com.bokumbob.electron_autoUpdate",
     "copyright": "copyright 2023 Project, Inc",
     "publish": {
-      "provider": "github"
+      "provider": "github",
+      "owner": "bokumbob"
     },
     "asar": true,
     "protocols": {
@@ -52,11 +54,10 @@
       "target": [
         "nsis"
       ],
-      "arch": [
-        "x64",
-        "ia32"
-      ],
-      "icon": null
+      "icon": null,
+      "publish": [
+        "github"
+      ]
     },
     "nsis": {
       "oneClick": false,

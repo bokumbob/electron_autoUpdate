@@ -1,0 +1,4 @@
+owner: bokumbob
+repo: electron_autoUpdate
+provider: github
+updaterCacheDirName: electron_test-updater

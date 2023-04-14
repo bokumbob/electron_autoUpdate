@@ -1,0 +1,8 @@
+version: 1.0.0
+files:
+  - url: setup_test-Setup-1.0.0.exe
+    sha512: g3qCUxK/MmjB01/O6VuPKEpgsWsW5nKv8uMHRzWU1+IusTJJ0rnaBa+NWGLZZowLUUydl5mlMluSSQMHS56toA==
+    size: 1246027055
+path: setup_test-Setup-1.0.0.exe
+sha512: g3qCUxK/MmjB01/O6VuPKEpgsWsW5nKv8uMHRzWU1+IusTJJ0rnaBa+NWGLZZowLUUydl5mlMluSSQMHS56toA==
+releaseDate: '2023-04-14T01:20:27.228Z'

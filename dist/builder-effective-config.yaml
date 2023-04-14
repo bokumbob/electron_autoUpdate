@@ -3,7 +3,11 @@ directories:
   buildResources: ./resources/installer/
   app: .
 productName: setup_test
-appId: com.electron
+appId: com.bokumbob.electron_autoUpdate
+copyright: copyright 2023 Project, Inc
+publish:
+  provider: github
+  owner: bokumbob
 asar: true
 protocols:
   name: setup_test
@@ -11,13 +15,22 @@ protocols:
     - setup_test
 win:
   target:
-    - zip
     - nsis
-  icon: ./resources/installer/Icon.ico
+  icon: null
+  publish:
+    - github
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
+mac:
+  target:
+    - default
+  category: public.app-category.productivity
+  icon: null
+dmg:
+  title: setup_test
+  icon: null
 files:
   - filter:
       - '!.vscode${/*}'
-electronVersion: 24.1.0
+electronVersion: 24.1.1
