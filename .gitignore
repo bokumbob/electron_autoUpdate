@@ -1,0 +1,14 @@
+out
+node_modules
+.env
+destfolder
+app.asar
+practice
+setup_test
+naver-clone
+css
+js
+main
+electron_autoUpdate.git
+bfg-1.14.0.jar
+dist
