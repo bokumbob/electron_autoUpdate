@@ -1,7 +1,6 @@
 const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 const { autoUpdater } = require('electron-updater')
 const path = require('path')
-
 let mainWindow;
 
 function createWindow () {
@@ -18,10 +17,7 @@ function createWindow () {
 }
 
 app.whenReady().then(() => {
-  ipcMain.on('counter-value', (_event, value) => {
-    autoUpdater.checkForUpdatesAndNotify();
-    console.log(autoUpdater)
-  })
+  autoUpdater.checkForUpdatesAndNotify();
   createWindow()
 
   app.on('activate', function () {
