@@ -84,6 +84,9 @@ ipcMain.on("app_version", (event) => {
 
 autoUpdater.on("update-available", () => {
 	win.webContents.send("update_available");
+  // console.log(win.webContents)
+  // console.log(sendStatusToWindow)
+  autoUpdater.autoDownload()
 });
 
 autoUpdater.on("update-downloaded", () => {
