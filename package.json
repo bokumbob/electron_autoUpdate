@@ -1,6 +1,6 @@
 {
   "name": "electron_test",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "practice electron",
   "main": "main.js",
   "scripts": {
