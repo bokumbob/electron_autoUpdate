@@ -17,7 +17,7 @@ function createWindow () {
 }
 
 app.whenReady().then(() => {
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdates();
   createWindow()
 
   app.on('activate', function () {
@@ -38,7 +38,11 @@ autoUpdater.on('checking-for-update', () => {
   mainWindow.webContents.send('check_update');
 })
 
-autoUpdater.on('update_available', () => {
+autoUpdater.on('update-not-available', () => {
+  mainWindow.webContents.send('update_not_available');
+})
+
+autoUpdater.on('update-available', () => {
   console.log('update')
   mainWindow.webContents.send('update_available');
 })

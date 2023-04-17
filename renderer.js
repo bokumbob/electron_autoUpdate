@@ -16,6 +16,10 @@ window.electronAPI.activeUpdate((event, value) => {
     console.log('업데이트 준비 완료')
 })
 
+window.electronAPI.deactiveUpdate((event, value) => {
+    console.log('업데이트 불가')
+})
+
 window.electronAPI.downloadNewV((event, value) => {
     message.innerText = '업데이트 파일 다운로드가 완료되었습니다. 재시작 시 업데이트가 반영됩니다.'
 })
