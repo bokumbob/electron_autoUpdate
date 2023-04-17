@@ -1,5 +1,7 @@
 // const counter = document.getElementById('counter')
 
+const { ipcRenderer } = require("electron");
+
 // const version = document.getElementById('version');
 // const message = document.getElementById('message');
 // const restart = document.getElementById('restart');
