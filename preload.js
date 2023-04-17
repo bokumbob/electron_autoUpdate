@@ -49,6 +49,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
     ipcRenderer.removeAllListeners('app_version')
     ipcRenderer.on('app_version', callback);
   },
+  checkUpdate: (callback) => {
+    ipcRenderer.send('check_update');
+    ipcRenderer.removeAllListeners('check_update')
+    ipcRenderer.on('check_update', callback);
+  },
   activeUpdate: (callback) => {
     ipcRenderer.send('update_available');
     ipcRenderer.removeAllListeners('update_available')

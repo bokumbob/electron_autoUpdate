@@ -37,6 +37,11 @@ ipcMain.on('app_version', e => {
   e.sender.send('app_version', {version: app.getVersion()})
 })
 
+autoUpdater.on('checking-for-update', () => {
+  console.log('check update')
+  mainWindow.webContents.send('check_update');
+})
+
 autoUpdater.on('update_available', () => {
   console.log('update')
   mainWindow.webContents.send('update_available');

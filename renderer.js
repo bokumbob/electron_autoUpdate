@@ -8,6 +8,10 @@ window.electronAPI.checkVersion((event, value) => {
     version.innerText = value.version
 })
 
+window.electronAPI.checkUpdate((event, value) => {
+    console.log('업데이트 버전 확인 중')
+})
+
 window.electronAPI.activeUpdate((event, value) => {
     console.log('업데이트 준비 완료')
 })
@@ -17,5 +21,6 @@ window.electronAPI.downloadNewV((event, value) => {
 })
 
 restart.addEventListener('click', () => {
+    console.log('click restart')
     window.electronAPI.restart();
 })
