@@ -1,57 +1,3 @@
-// const {app, BrowserWindow, Menu, ipcMain} = require('electron')
-// const { autoUpdater } = require('electron-updater')
-// const path = require('path')
-// let mainWindow;
-
-// function createWindow () {
-//   mainWindow = new BrowserWindow({
-//     webPreferences: {
-//       preload: path.join(__dirname, 'preload.js')
-//     }
-//   })
-
-//   mainWindow.loadFile('index.html')
-
-//   mainWindow.webContents.openDevTools()
-// }
-
-// app.whenReady().then(() => {
-//   autoUpdater.checkForUpdatesAndNotify();
-//   createWindow()
-
-//   app.on('activate', function () {
-//     if (BrowserWindow.getAllWindows().length === 0) createWindow()
-//   })
-// })
-
-// app.on('window-all-closed', function () {
-//   if (process.platform !== 'darwin') app.quit()
-// })
-
-// ipcMain.on('app_version', e => {
-//   e.sender.send('app_version', {version: app.getVersion()})
-// })
-
-// autoUpdater.on('checking-for-update', () => {
-//   mainWindow.webContents.send('check_update');
-// })
-
-// autoUpdater.on('update-not-available', () => {
-//   mainWindow.webContents.send('update_not_available');
-// })
-
-// autoUpdater.on('update-available', () => {
-//   mainWindow.webContents.send('update_available');
-// })
-
-// autoUpdater.on('update-downloaded', () => {
-//   mainWindow.webContents.send('update_download');
-// })
-
-// ipcMain.on('restart_app', () => {
-//   autoUpdater.quitAndInstall();
-// })
-
 const { app, BrowserWindow, ipcMain } = require("electron");
 const { autoUpdater } = require("electron-updater");
 
@@ -81,6 +27,10 @@ ipcMain.on("app_version", (event) => {
   	// app_version 채널로 현재 version을 보내는 코드
 	event.sender.send("app_version", { version: app.getVersion() });
 });
+
+autoUpdater.on('checking-for-update', () => {
+  mainWindow.webContents.send('check_update');
+})
 
 autoUpdater.on("update-available", () => {
 	win.webContents.send("update_available");

@@ -51,10 +51,16 @@ ipcRenderer.on("update_available", () => {
 	ipcRenderer.removeAllListeners("update_available");
 	message.innerText = "업데이트 파일을 다운로드 중입니다...";
 	notification.classList.remove("hidden");
+    console.log('다운 중임')
 });
+
+ipcRenderer.on('check_update', () => {
+    console.log('yes')
+})
 
 // update_downloaded 채널로 송/수신
 ipcRenderer.on("update_downloaded", () => {
+    console.log('downloaded')
 	ipcRenderer.removeAllListeners("update_downloaded");
   	// 업데이트 완료 후 해당 메시지를 보여줍니다.
 	message.innerText =
