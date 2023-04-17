@@ -1,33 +1,21 @@
-// const { ipcRenderer } = require("electron");
+const counter = document.getElementById('counter')
 
-// const information = document.getElementById('info');
-// // information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
+const version = document.getElementById('version');
+const message = document.getElementById('message');
+const restart = document.getElementById('restart');
 
-// const fileElem = document.getElementById('file');
+window.electronAPI.checkVersion((event, value) => {
+    version.innerText = value.version
+})
 
-// const counter = document.getElementById('counter')
+window.electronAPI.activeUpdate((event, value) => {
+    console.log('업데이트 준비 완료')
+})
 
-// const func = async () => {
-//   const response = await window.versions.ping()
-//   const response2 = await window.versions.setTitle('sd');
-//   const fileResponese = await window.versions.openFile()
-//   information.innerText = response // prints out 'pong'
-//   fileElem.innerText = fileResponese // prints out 'pong'
-// }
+window.electronAPI.downloadNewV((event, value) => {
+    message.innerText = '업데이트 파일 다운로드가 완료되었습니다. 재시작 시 업데이트가 반영됩니다.'
+})
 
-// func()
-
-// window.versions.onUpdateCounter((_event, value) => {
-//   const oldValue = Number(counter.innerText)
-//   const newValue = oldValue + value
-//   counter.innerText = newValue
-// })
-
-// const channel = new MessageChannel()
-
-// const port1 = channel.port1
-// const port2 = channel.port2
-
-// port2.postMessage({answer:42})
-
-// ipcRenderer.postMessage('port', null, [port1])
+restart.addEventListener('click', () => {
+    window.electronAPI.restart();
+})

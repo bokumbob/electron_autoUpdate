@@ -1,70 +1,35 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <link rel="stylesheet" href="./index.css">
     <title>Hello from Electron renderer!</title>
-    <style>
-      #notification {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        width: 200px;
-        padding: 20px;
-        border-radius: 5px;
-        background-color: white;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      }
-      .hidden {
-        display: none;
-      }
-    </style>
   </head>
   <body>
     <h1>Healo from Electron renderer!</h1>
     <p>👋</p>
-    <p id="info"></p>
-    <p id="file"></p>
-    <p id="counter">0</p>
-    <a href="./practice/darkmode.html">dark page</a>
-    <input type="text" name="" id="">
 
     <h2 id="version"></h2>
     <p id="message"></p>
-    <button id="restart-button" onclick="restartApp()">재시작</button>
+    <button id="restart-button">재시작</button>
   </body>
   <script src="./renderer.js"></script>
-  <script>
-    const { ipcRenderer } = require('electron');
-    const version = document.getElementById('version');
-    const message = document.getElementById('message');
+</html> -->
 
-    ipcRenderer.send('app_version');
-    ipcRenderer.on('app_version', (e, arg) => {
-      ipcRenderer.removeAllListeners('app_version');
-      version.innerText = 'Version' + arg.version;
-    });
 
-    ipcRenderer.on('update_available', () => {
-      ipcRenderer.removeAllListeners('update_available');
-      message.innerText = '업데이트 파일을 다운로드 중입니다...'
-    })
-
-    ipcRenderer.on('update_downloaded', () => {
-      ipcRenderer.removeAllListeners('update_downloaded');
-      message.innerText = '업데이트 파일 다운로드가 완료되었습니다. 재시작을 하면 업데이트가 설치됩니다. 재시작 하시겠습니까?';
-    })
-
-    function restartApp(){
-      ipcRenderer.send('restart_app')
-    }
-  </script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Menu Counter</title>
+  </head>
+  <body>
+    <p id="version"></p>
+    Current value: <strong id="counter">0</strong>
+    <p id="message"></p>
+    <button type="button" id="restart">restart</button>
+    <script src="./renderer.js"></script>
+  </body>
 </html>
